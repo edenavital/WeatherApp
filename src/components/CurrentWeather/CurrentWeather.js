@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import "./CurrentWeather.css";
 import { connect } from "react-redux";
 import { fetchUserCoordinates } from "../../redux";
+
+//props: long, lat, fetchUserCoordinates
 
 class CurrentWeather extends Component {
   componentDidMount() {
@@ -9,11 +12,13 @@ class CurrentWeather extends Component {
 
   render() {
     return (
-      <div>
-        Hello from currentWeather
-        <p>Your current position is :</p>
+      <div className="CurrentWeather">
+        From Weather at "LOCATION" is:
+        <p>Country, City</p>
+        <p>FETCH DAY AND TIME</p>
+        <p>STATUS OF SKY</p>
         <p>
-          Long: {this.props.long} Lat: {this.props.long}
+          Long: {this.props.long} Lat: {this.props.lat}
         </p>
       </div>
     );
@@ -22,8 +27,8 @@ class CurrentWeather extends Component {
 
 const mapStateToProps = state => {
   return {
-    long: state.long,
-    lat: state.lat
+    long: state.coordinates.long,
+    lat: state.coordinates.lat
   };
 };
 

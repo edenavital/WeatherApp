@@ -1,1 +1,1 @@
-export { fetchUserCoordinates } from "./weather/weatherActions";
+export { fetchUserCoordinates } from "./coordinates/coordinatesActions";

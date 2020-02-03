@@ -2,7 +2,7 @@ import {
   FETCH_COORDINATES,
   FETCH_COORDINATES_SUCCESS,
   FETCH_COORDINATES_FAILURE
-} from "./weatherTypes";
+} from "./coordinatesTypes";
 
 const initialState = {
   long: "",
@@ -10,7 +10,7 @@ const initialState = {
   error: ""
 };
 
-const weatherReducer = (state = initialState, action) => {
+const coordinatesReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_COORDINATES:
       return {
@@ -35,4 +35,4 @@ const weatherReducer = (state = initialState, action) => {
   }
 };
 
-export default weatherReducer;
+export default coordinatesReducer;

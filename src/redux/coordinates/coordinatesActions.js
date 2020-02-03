@@ -2,7 +2,7 @@ import {
   FETCH_COORDINATES,
   FETCH_COORDINATES_SUCCESS,
   FETCH_COORDINATES_FAILURE
-} from "./weatherTypes";
+} from "./coordinatesTypes";
 
 export const fetchCoordinates = () => {
   return {
@@ -24,7 +24,9 @@ export const fetchCoordinatesFailure = () => {
   return {
     type: FETCH_COORDINATES_FAILURE,
     payload: {
-      msg: "Error on fetching coordinates"
+      lat: "",
+      long: "",
+      msg: "Error - can't fetch coordinates"
     }
   };
 };
