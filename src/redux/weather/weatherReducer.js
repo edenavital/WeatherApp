@@ -2,8 +2,8 @@ import {
   FETCH_COORDINATES,
   FETCH_COORDINATES_SUCCESS,
   FETCH_COORDINATES_FAILURE,
-  TEMP_TO_FAHRENHEIT,
-  TEMP_TO_CELSIUS,
+  // TEMP_TO_FAHRENHEIT,
+  // TEMP_TO_CELSIUS,
   TOGGLE_CELSIUS
 } from "./weatherTypes";
 
@@ -40,22 +40,12 @@ const weatherReducer = (state = initialState, action) => {
         lat: "",
         error: "Failed to fetch coordinates from user"
       };
-    case TEMP_TO_FAHRENHEIT:
-      return {
-        ...state,
-        temp: action.payload,
-        tempType: "°F"
-      };
-    case TEMP_TO_CELSIUS:
-      return {
-        ...state,
-        temp: action.payload,
-        tempType: "°C"
-      };
     case TOGGLE_CELSIUS:
       return {
         ...state,
-        isCelsius: !action.payload
+        temp: action.payload.temp,
+        isCelsius: action.payload.isCelsius,
+        tempType: action.payload.tempType
       };
     default:
       return state;

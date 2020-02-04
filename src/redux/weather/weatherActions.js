@@ -4,8 +4,8 @@ import {
   FETCH_COORDINATES,
   FETCH_COORDINATES_SUCCESS,
   FETCH_COORDINATES_FAILURE,
-  TEMP_TO_FAHRENHEIT,
-  TEMP_TO_CELSIUS,
+  // TEMP_TO_FAHRENHEIT,
+  // TEMP_TO_CELSIUS,
   TOGGLE_CELSIUS
 } from "./weatherTypes";
 
@@ -57,7 +57,7 @@ export const fetchUserCoordinates = () => {
         dispatch(fetchFromApi(position));
       });
     } else {
-      dispatch(fetchCoordinatesFailure);
+      dispatch(fetchCoordinatesFailure());
     }
   };
 };
@@ -79,30 +79,29 @@ export const fetchFromApi = position => {
         dispatch(fetchCoordinatesSuccess(position, dataFromApi));
       })
       .catch(err => {
-        dispatch(fetchCoordinatesFailure);
+        dispatch(fetchCoordinatesFailure());
       });
   };
 };
 
-//Convert to Fahrenheit - payload is updated
-export const tempToFahrenheit = temp => {
-  return {
-    type: TEMP_TO_FAHRENHEIT,
-    payload: ((temp * 9) / 5 + 32).toFixed(2)
-  };
-};
+//toggleCelsius - returns new temperature and toggles the isCelsius redux state
+export const toggleCelsius = (isCelsius, temp, tempType) => {
+  let newTemp = temp;
+  let newTempType = tempType;
+  if (isCelsius) {
+    newTemp = ((temp * 9) / 5 + 32).toFixed(2);
+    newTempType = "°F";
+  } else {
+    newTemp = ((temp - 32) / 1.8).toFixed(2);
+    newTempType = "°C";
+  }
 
-//Convert to Celsius - payload is updated
-export const tempToCelsius = temp => {
-  return {
-    type: TEMP_TO_CELSIUS,
-    payload: ((temp - 32) / 1.8).toFixed(2)
-  };
-};
-
-export const toggleCelsius = isCelsius => {
   return {
     type: TOGGLE_CELSIUS,
-    payload: isCelsius
+    payload: {
+      temp: newTemp,
+      isCelsius: !isCelsius,
+      tempType: newTempType
+    }
   };
 };

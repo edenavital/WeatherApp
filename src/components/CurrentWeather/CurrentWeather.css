@@ -1,14 +1,24 @@
 .CurrentWeather {
   margin: 15px;
-  border: 3px solid black;
+  border: 2px solid cornsilk;
+  border-radius: 50px;
   margin: auto;
+  padding: 18px;
+  opacity: 0;
+  animation: FadeIn 2s forwards;
+  animation-delay: 1.8s;
+}
+
+.weather-summary {
+  display: flex;
+  flex-direction: column;
 }
 
 .weather-summary > * {
-  display: flex;
+  text-align: left;
   justify-content: left;
   margin: 0px;
-  padding: 0px;
+  padding: 2px;
 }
 
 .CurrentWeather .weather-summary h4 {
@@ -18,4 +28,14 @@
 .CurrentWeather span {
   cursor: pointer;
   color: blue;
+  user-select: none;
+}
+
+.CurrentWeather main {
+  display: flex;
+  margin: auto;
+}
+
+.CurrentWeather main h3 {
+  min-width: 75px;
 }
