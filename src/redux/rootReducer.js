@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import coordinatesReducer from "./coordinates/coordinatesReducer";
+import weatherReducer from "./weather/weatherReducer";
 
 const rootReducer = combineReducers({
-  coordinates: coordinatesReducer
+  weather: weatherReducer
 });
 
 export default rootReducer;

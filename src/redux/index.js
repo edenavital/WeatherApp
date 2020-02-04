@@ -1,1 +1,6 @@
-export { fetchUserCoordinates } from "./coordinates/coordinatesActions";
+export {
+  fetchUserCoordinates,
+  tempToFahrenheit,
+  tempToCelsius,
+  toggleCelsius
+} from "./weather/weatherActions";

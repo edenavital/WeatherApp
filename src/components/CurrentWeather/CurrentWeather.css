@@ -3,3 +3,19 @@
   border: 3px solid black;
   margin: auto;
 }
+
+.weather-summary > * {
+  display: flex;
+  justify-content: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+.CurrentWeather .weather-summary h4 {
+  text-transform: capitalize;
+}
+
+.CurrentWeather span {
+  cursor: pointer;
+  color: blue;
+}
