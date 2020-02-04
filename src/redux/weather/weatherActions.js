@@ -57,7 +57,7 @@ export const fetchUserCoordinates = () => {
         dispatch(fetchFromApi(position));
       });
     } else {
-      dispatch(fetchCoordinatesFailure);
+      dispatch(fetchCoordinatesFailure());
     }
   };
 };
@@ -79,7 +79,7 @@ export const fetchFromApi = position => {
         dispatch(fetchCoordinatesSuccess(position, dataFromApi));
       })
       .catch(err => {
-        dispatch(fetchCoordinatesFailure);
+        dispatch(fetchCoordinatesFailure());
       });
   };
 };
