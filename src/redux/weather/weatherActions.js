@@ -1,46 +1,13 @@
 import axios from "axios";
-
+import { fetchForecastWeather } from "../weatherForecast/WeatherForecastActions";
 import {
   FETCH_COORDINATES,
   FETCH_COORDINATES_SUCCESS,
   FETCH_COORDINATES_FAILURE,
-  // TEMP_TO_FAHRENHEIT,
-  // TEMP_TO_CELSIUS,
   TOGGLE_CELSIUS
 } from "./weatherTypes";
 
-export const fetchCoordinates = () => {
-  return {
-    type: FETCH_COORDINATES
-  };
-};
-
-//When the user succeed to fetch coordinates from user:
-//I dispatch feetchCoordinatesSuccess in order to return action.payload.position - which are the coordinates,
-//and action.payload.dataFromApi - which is the json I get from the api
-//In the Reducer, I will take care of the data I'm getting
-export const fetchCoordinatesSuccess = (position, dataFromApi) => {
-  return {
-    type: FETCH_COORDINATES_SUCCESS,
-    payload: {
-      position: position,
-      dataFromApi: dataFromApi
-    }
-  };
-};
-
-export const fetchCoordinatesFailure = () => {
-  return {
-    type: FETCH_COORDINATES_FAILURE,
-    payload: {
-      lat: "",
-      long: "",
-      msg: "Error - can't fetch coordinates"
-    }
-  };
-};
-
-//Fetching coordinates from the user
+//Action creator that goes to the component CurrentWeather - Fetching coordinates from the user, than gets data from the api
 export const fetchUserCoordinates = () => {
   console.log("fetchUserCoordinates invoked");
   return dispatch => {
@@ -62,6 +29,17 @@ export const fetchUserCoordinates = () => {
   };
 };
 
+export const fetchCoordinates = () => {
+  return {
+    type: FETCH_COORDINATES
+  };
+};
+
+//When the user succeed to fetch coordinates from the user:
+//Dispatch feetchCoordinatesSuccess in order to return action.payload.position - which are the coordinates,
+//and action.payload.dataFromApi - which is the data (json format) I get from the api
+//In the Reducer, I can send the json or destructure only what I need
+
 export const fetchFromApi = position => {
   console.log("fetchFromApi invoked");
   return dispatch => {
@@ -74,13 +52,36 @@ export const fetchFromApi = position => {
       )
       .then(res => {
         const dataFromApi = res.data;
-        console.log("dataFromApi: ", dataFromApi);
+        console.log("dataFromApi - CurrentWeather: ", dataFromApi);
 
         dispatch(fetchCoordinatesSuccess(position, dataFromApi));
+        //Only after I fetched the data, I can pass the positions of the user to forecastWeather
+        dispatch(fetchForecastWeather());
       })
       .catch(err => {
         dispatch(fetchCoordinatesFailure());
       });
+  };
+};
+
+export const fetchCoordinatesSuccess = (position, dataFromApi) => {
+  return {
+    type: FETCH_COORDINATES_SUCCESS,
+    payload: {
+      position: position,
+      dataFromApi: dataFromApi
+    }
+  };
+};
+
+export const fetchCoordinatesFailure = () => {
+  return {
+    type: FETCH_COORDINATES_FAILURE,
+    payload: {
+      lat: "",
+      long: "",
+      msg: "Error - can't fetch coordinates"
+    }
   };
 };
 
