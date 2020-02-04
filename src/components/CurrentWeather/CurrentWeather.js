@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import "./CurrentWeather.css";
 import { connect } from "react-redux";
-import {
-  fetchUserCoordinates,
-  tempToFahrenheit,
-  tempToCelsius,
-  toggleCelsius
-} from "../../redux";
+import { fetchUserCoordinates, toggleCelsius } from "../../redux";
 
 //props: long, lat, fetchUserCoordinates()
 const MONTHS = [
@@ -48,23 +43,9 @@ class CurrentWeather extends Component {
     this.props.fetchUserCoordinates();
   }
 
-  toggleTemp = () => {
-    const temp = this.props.temp;
-    const isCelsius = this.props.isCelsius;
-
-    if (this.props.isCelsius) {
-      this.props.tempToFahrenheit(temp);
-      this.props.toggleCelsius(isCelsius);
-    } else {
-      this.props.tempToCelsius(temp);
-      this.props.toggleCelsius(isCelsius);
-      //toggle isCelsius!
-    }
-  };
-
   render() {
     const dateFormat = generateDateFormat();
-    console.log("TEMP IS: ", this.props.temp);
+
     return (
       <div className="CurrentWeather">
         <div className="weather-summary">
@@ -73,18 +54,28 @@ class CurrentWeather extends Component {
           </h2>
           <h4>{dateFormat}</h4>
           <h4>{this.props.description}</h4>
-          <div>
+          <main>
             <img src={this.props.icon} alt="weatherIcon" />
             <h3>
               {this.props.temp}{" "}
-              <span onClick={this.toggleTemp}>{this.props.tempType}</span>
+              <span
+                onClick={() =>
+                  this.props.toggleCelsius(
+                    this.props.isCelsius,
+                    this.props.temp,
+                    this.props.tempType
+                  )
+                }
+              >
+                {this.props.tempType}
+              </span>
             </h3>
-          </div>
+          </main>
 
-          <h4>TEMPERATURE WITH C AND F OPTIONS</h4>
           <em>
-            Your current position is: Long: {this.props.long} Lat:{" "}
-            {this.props.lat}
+            Your current position is: Long:{" "}
+            {parseFloat(this.props.long).toFixed(2)} Lat:{" "}
+            {parseFloat(this.props.lat).toFixed(2)}
           </em>
         </div>
       </div>
@@ -94,8 +85,11 @@ class CurrentWeather extends Component {
 
 const mapStateToProps = state => {
   return {
+    //Coordinates of user
     long: state.weather.long,
     lat: state.weather.lat,
+
+    //Store & API data
     name: state.weather.name,
     country: state.weather.country,
     description: state.weather.description,
@@ -109,9 +103,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchUserCoordinates: () => dispatch(fetchUserCoordinates()),
-    tempToFahrenheit: temp => dispatch(tempToFahrenheit(temp)),
-    tempToCelsius: temp => dispatch(tempToCelsius(temp)),
-    toggleCelsius: isCelsius => dispatch(toggleCelsius(isCelsius))
+    toggleCelsius: (isCelsius, temp, tempType) =>
+      dispatch(toggleCelsius(isCelsius, temp, tempType))
   };
 };
 
