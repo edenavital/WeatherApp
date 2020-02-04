@@ -9,7 +9,7 @@
 
 .App h1 {
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: FadeInNoTransform 2s forwards;

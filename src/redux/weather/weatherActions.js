@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { fetchForecastWeather } from "../weatherForecast/WeatherForecastActions";
 import {
   FETCH_COORDINATES,
   FETCH_COORDINATES_SUCCESS,
@@ -77,6 +77,8 @@ export const fetchFromApi = position => {
         console.log("dataFromApi: ", dataFromApi);
 
         dispatch(fetchCoordinatesSuccess(position, dataFromApi));
+        //Only after I fetched the data, I can pass it to forecastWeather
+        dispatch(fetchForecastWeather());
       })
       .catch(err => {
         dispatch(fetchCoordinatesFailure());
