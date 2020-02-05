@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import "./WeatherCard.css";
-import React from "react";
 
-import React from "react";
-//Will be needed in order to show the forecast of 5 days
+//Will be needed in order to show the forecast of 5 days, WeatherCard is a component for a single day
 function WeatherCard() {
   return (
-    <div>
-      <h4>Hello from WeatherCard</h4>
+    <div className="WeatherCard">
+      <h4>DESCRIPTION</h4>
+      <img src={`http://openweathermap.org/img/wn/10n.png`} alt="TEST" />
+      <p>TEMPERATURE</p>
     </div>
   );
 }
