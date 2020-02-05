@@ -7,7 +7,7 @@ class WeatherForecast extends Component {
   render() {
     console.log(
       "Hello from WeatherForecast component, my state: state.WeatherForecast: ",
-      this.props.forecastDataFromApi
+      this.props.forecastDataFromApi.list[0]
     );
 
     //You need to get 5 days from this.props.dataFromApi.list... it is 40 objects 3 hours diff... take the first one which is the current day, and than get to the next day somehow...

@@ -45,9 +45,6 @@ export const fetchForecastWeather = () => {
       )
       .then(res => {
         const forecastDataFromApi = res.data;
-        console.log("FORECAST DATA FROM ACTION: ", forecastDataFromApi);
-        //const tryin = forecastDataFromApi.list[0];
-        //console.log("FROMWEATHERFORECASTACTIONS: ", tryin);
         dispatch(fetchForecastSuccess(forecastDataFromApi));
       })
       .catch(err => {
