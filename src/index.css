@@ -30,7 +30,18 @@ h6 {
 @keyframes FadeIn {
   0% {
     opacity: 0;
-    transform: translateY(-80vh);
+    transform: translateY(-20vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0vh);
+  }
+}
+
+@keyframes FadeInWeatherCard {
+  0% {
+    opacity: 0;
+    transform: translateY(-10vh);
   }
   100% {
     opacity: 1;

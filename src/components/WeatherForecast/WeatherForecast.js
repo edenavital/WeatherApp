@@ -3,6 +3,14 @@ import "./WeatherForecast.css";
 import { connect } from "react-redux";
 // import { fetchForecastWeather } from "../../redux";
 import WeatherCard from "../WeatherCard/WeatherCard";
+
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+const getCurrentDay = dt_txt => {
+  const date = new Date(dt_txt);
+  return DAYS[date.getDay()];
+};
+
 class WeatherForecast extends Component {
   render() {
     console.log(
@@ -10,13 +18,8 @@ class WeatherForecast extends Component {
       this.props.forecastDataFromApi
     );
 
-    //You need to get 5 days from this.props.dataFromApi.list... it is 40 objects 3 hours diff...
-    //If you wish to show the current day too, just take the values from CurrentWeather state (Start off with: description, temp, icon)
-    //FIGURE OUT WHY I CANT USE THE STATE FROM THE REDUCER
-
     //I want to display the weather according to the current time.
     //So I take only the objects that represents the current time.
-
     //Extracting the current time according to the API (09:00:00)
     const currentFitTime = this.props.forecastDataFromApi.list[0].dt_txt.slice(
       -8
@@ -36,13 +39,29 @@ class WeatherForecast extends Component {
     );
 
     console.log("I'M LEFT WITH: ", fifthDaysData);
-    console.log(
-      "NEXT TIME IS TO LOOP OVER FIFTHDAYSDATA AND THAN SENDS THE DATA TO WEATHER CARD EACH TIME! ALMOST DONE TASK!"
-    );
+
+    let animationDelay = 3.5;
+
+    let forecast = fifthDaysData.map(weatherPerDay => {
+      const currentDayString = getCurrentDay(weatherPerDay.dt_txt);
+      animationDelay += 0.8;
+
+      return (
+        <WeatherCard
+          key={weatherPerDay.dt}
+          description={weatherPerDay.weather[0].description}
+          icon={`http://openweathermap.org/img/wn/${weatherPerDay.weather[0].icon}.png`}
+          temp={weatherPerDay.main.temp}
+          currentDayString={currentDayString}
+          animationDelay={animationDelay}
+        />
+      );
+    });
+
     return (
       <div className="WeatherForecast">
-        <h3>Hello from WeatherForecast</h3>
-        <WeatherCard />
+        <h2>Weather Forecast for the next 5 days</h2>
+        <main>{forecast}</main>
       </div>
     );
   }
