@@ -8,12 +8,9 @@ const App = props => {
   console.log("FROM APP.JS: ", props.loading);
 
   let forecast = "";
-  if (!props.loading) {
-    forecast = <WeatherForecast />;
-  } else {
-    console.log("FROM APP.JS: ", props.loading);
-    forecast = null;
-  }
+  forecast = !props.loading
+    ? (forecast = <WeatherForecast />)
+    : (forecast = null);
 
   return (
     <div className="App">
@@ -30,8 +27,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

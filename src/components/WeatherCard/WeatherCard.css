@@ -1,12 +1,15 @@
 .WeatherCard {
-  width: 100px;
+  min-width: 100px;
   height: 100px;
-  border: 3px solid rgb(41, 141, 172);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 10px;
+  padding: 10px;
+
+  opacity: 0;
 }
 
 .WeatherCard > * {

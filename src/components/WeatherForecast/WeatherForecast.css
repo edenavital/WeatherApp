@@ -1,5 +1,22 @@
 .WeatherForecast {
-  margin: auto;
-  animation-delay: 1.8s;
+  opacity: 0;
+  animation: FadeInNoTransform 2s forwards;
+  animation-delay: 2.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.WeatherForecast > * {
+  margin: 15px;
+}
+
+.WeatherForecast main {
+  display: flex;
+}
+
+.WeatherForecast h2 {
+  margin-bottom: 40px;
   animation: FadeInNoTransform 2s forwards;
 }

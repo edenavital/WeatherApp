@@ -34,14 +34,12 @@ export const fetchForecastWeather = () => {
 
     const storeFromWeather = getState().weather;
 
-    const lat = storeFromWeather.lat;
-    const long = storeFromWeather.long;
-    // console.log("LAT:", lat);
-    // console.log("LONG:", long);
+    const idOfCity = storeFromWeather.idOfCity;
+    console.log("ID OF CITY IS:", idOfCity);
 
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=metric&appid=992de09d4812a13bdc498d2d720b5cc6`
+        `https://api.openweathermap.org/data/2.5/forecast?id=${idOfCity}&units=metric&appid=992de09d4812a13bdc498d2d720b5cc6`
       )
       .then(res => {
         const forecastDataFromApi = res.data;

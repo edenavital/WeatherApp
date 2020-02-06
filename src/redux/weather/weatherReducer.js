@@ -30,6 +30,7 @@ const weatherReducer = (state = initialState, action) => {
         isCelsius: true,
         temp: action.payload.dataFromApi.main.temp,
         tempType: "°C",
+        idOfCity: action.payload.dataFromApi.id,
         error: ""
       };
     case FETCH_COORDINATES_FAILURE:

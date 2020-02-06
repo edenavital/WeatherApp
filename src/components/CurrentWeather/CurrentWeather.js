@@ -45,7 +45,7 @@ class CurrentWeather extends Component {
 
   render() {
     const dateFormat = generateDateFormat();
-
+    console.log("LOOOOL:", dateFormat);
     return (
       <div className="CurrentWeather">
         <div className="weather-summary">

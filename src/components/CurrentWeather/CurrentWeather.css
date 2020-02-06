@@ -1,12 +1,12 @@
 .CurrentWeather {
   margin: 15px;
-  border: 2px solid cornsilk;
+  border: 2px solid rgb(228, 221, 202);
   border-radius: 50px;
-  margin: auto;
+  margin: 30px;
   padding: 18px;
   opacity: 0;
   animation: FadeIn 2s forwards;
-  animation-delay: 1.8s;
+  animation-delay: 1s;
 }
 
 .weather-summary {

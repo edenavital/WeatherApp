@@ -1,6 +1,8 @@
 body {
   margin: 0;
   padding: 0;
+  width: 100vw;
+  height: 100vh;
   font-family: "Poppins", sans-serif;
   background: #7f7fd5; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -15,6 +17,9 @@ body {
     #86a8e7,
     #7f7fd5
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: scroll;
 }
 
 h1,
@@ -30,7 +35,18 @@ h6 {
 @keyframes FadeIn {
   0% {
     opacity: 0;
-    transform: translateY(-80vh);
+    transform: translateY(-20vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0vh);
+  }
+}
+
+@keyframes FadeInWeatherCard {
+  0% {
+    opacity: 0;
+    transform: translateY(-10vh);
   }
   100% {
     opacity: 1;
