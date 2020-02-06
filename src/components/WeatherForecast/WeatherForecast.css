@@ -1,3 +1,5 @@
 .WeatherForecast {
   margin: auto;
+  animation-delay: 1.8s;
+  animation: FadeInNoTransform 2s forwards;
 }
