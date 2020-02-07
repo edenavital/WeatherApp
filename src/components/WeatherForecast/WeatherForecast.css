@@ -2,6 +2,10 @@
   opacity: 0;
   animation: FadeInNoTransform 2s forwards;
   animation-delay: 2.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .WeatherForecast > * {

@@ -15,7 +15,6 @@ const App = props => {
   return (
     <div className="App">
       <h1>Weather App</h1>
-
       <CurrentWeather />
       {forecast}
     </div>

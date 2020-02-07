@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./WeatherForecast.css";
 import { connect } from "react-redux";
-// import { fetchForecastWeather } from "../../redux";
 import WeatherCard from "../WeatherCard/WeatherCard";
+import Graph from "../Graph/Graph";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -10,6 +10,8 @@ const getCurrentDay = dt_txt => {
   const date = new Date(dt_txt);
   return DAYS[date.getDay()];
 };
+
+let graphData = [];
 
 class WeatherForecast extends Component {
   render() {
@@ -46,6 +48,12 @@ class WeatherForecast extends Component {
       const currentDayString = getCurrentDay(weatherPerDay.dt_txt);
       animationDelay += 0.8;
 
+      const dataToGraphPerDay = {
+        name: currentDayString,
+        temperature: weatherPerDay.main.temp
+      };
+      graphData.push(dataToGraphPerDay);
+
       return (
         <WeatherCard
           key={weatherPerDay.dt}
@@ -61,7 +69,10 @@ class WeatherForecast extends Component {
     return (
       <div className="WeatherForecast">
         <h2>Weather Forecast for the next 5 days</h2>
-        <main>{forecast}</main>
+        <main>
+          {forecast} <br />
+          <Graph graphData={graphData} />
+        </main>
       </div>
     );
   }
