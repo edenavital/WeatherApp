@@ -6,6 +6,7 @@
   width: 100vw;
   height: 100vh;
   text-align: center;
+  overflow: hidden;
 }
 
 .App h1 {
@@ -14,4 +15,5 @@
   left: 50%;
   transform: translate(-50%, -50%);
   animation: FadeInNoTransform 2s forwards;
+  text-shadow: 4px 2px 3px 3px;
 }
