@@ -11,8 +11,8 @@ function WeatherCard(props) {
       }}
     >
       <h3>{props.currentDayString}</h3>
-      <h4>{props.description}</h4>
-      <img src={props.icon} alt="iconOfWeather" />
+      <p>{props.description}</p>
+      <img src={props.icon} alt="weatherIcon" />
       <p>{props.temp}</p>
     </div>
   );

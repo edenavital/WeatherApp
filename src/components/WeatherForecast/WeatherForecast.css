@@ -6,17 +6,56 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 65vh;
 }
 
 .WeatherForecast > * {
-  margin: 15px;
+  margin: 20px;
 }
 
 .WeatherForecast main {
   display: flex;
+  margin: 20px;
 }
 
 .WeatherForecast h2 {
-  margin-bottom: 40px;
   animation: FadeInNoTransform 2s forwards;
+}
+
+@media screen and (max-width: 600px) {
+  .WeatherForecast {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .WeatherForecast h2 {
+    font-size: 20px;
+    margin: 20px;
+  }
+  .WeatherForecast main {
+    height: 40vh;
+    margin-bottom: 15px;
+  }
+  .WeatherForecast > * {
+    margin: 25px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .WeatherForecast {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .WeatherForecast h2 {
+    font-size: 20px;
+    margin: 20px;
+  }
+  .WeatherForecast main {
+    height: 40vh;
+    margin-bottom: 40px;
+  }
+  .WeatherForecast > * {
+    margin: 25px;
+  }
 }
