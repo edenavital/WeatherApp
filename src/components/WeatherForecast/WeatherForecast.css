@@ -6,17 +6,41 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 70vh;
 }
 
 .WeatherForecast > * {
-  margin: 15px;
+  margin: 20px;
 }
 
 .WeatherForecast main {
   display: flex;
+  margin: 20px;
 }
 
 .WeatherForecast h2 {
-  margin-bottom: 40px;
   animation: FadeInNoTransform 2s forwards;
+}
+
+@media screen and (max-width: 600px) {
+  .WeatherForecast h2 {
+    font-size: 20px;
+    margin: 20px;
+  }
+
+  .WeatherForecast main {
+    height: 40vh;
+    margin-bottom: 15px;
+  }
+  .WeatherForecast > * {
+    margin: 25px;
+  }
+  .CurrentWeather .weather-summary h4,
+  h3 {
+    font-size: 15px;
+  }
+  .CurrentWeather em {
+    font-size: 14px;
+  }
 }

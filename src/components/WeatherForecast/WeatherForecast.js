@@ -69,10 +69,9 @@ class WeatherForecast extends Component {
     return (
       <div className="WeatherForecast">
         <h2>Weather Forecast for the next 5 days</h2>
-        <main>
-          {forecast} <br />
-          <Graph graphData={graphData} />
-        </main>
+        <main>{forecast}</main>
+
+        <Graph graphData={graphData} />
       </div>
     );
   }
