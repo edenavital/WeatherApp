@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 140vh;
+  height: 130vh;
   font-family: "Poppins", sans-serif;
   background: #7f7fd5; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -31,7 +31,7 @@ h6 {
   padding: 0px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-height: 700px) {
   body {
     height: 160vh;
   }

@@ -6,7 +6,7 @@
   opacity: 0;
   animation: FadeIn 2s forwards;
   animation-delay: 1s;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .CurrentWeather h2 {

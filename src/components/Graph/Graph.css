@@ -3,6 +3,9 @@
   padding: 0px;
   width: 65vw;
   height: 30vh;
+  opacity: 0;
+  animation: FadeInNoTransform 2s forwards;
+  animation-delay: 8s;
 }
 
 @media screen and (min-width: 451px) and (max-width: 800px) {
@@ -23,6 +26,7 @@
   .Graph {
     width: 105vw;
     height: 25vh;
+    margin-top: 30px;
   }
 }
 @media screen and (max-width: 300px) {
