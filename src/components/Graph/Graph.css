@@ -3,7 +3,6 @@
   padding: 0px;
   width: 65vw;
   height: 30vh;
-  margin-bottom: 150px;
 }
 
 @media screen and (min-width: 451px) and (max-width: 800px) {
@@ -16,19 +15,19 @@
 @media screen and (max-width: 450px) {
   .Graph {
     width: 100vw;
-    height: 40vh;
+    height: 30vh;
   }
 }
 
 @media screen and (max-width: 400px) {
   .Graph {
     width: 105vw;
-    height: 35vh;
+    height: 25vh;
   }
 }
 @media screen and (max-width: 300px) {
   .Graph {
     width: 120vw;
-    height: 30vh;
+    height: 20vh;
   }
 }

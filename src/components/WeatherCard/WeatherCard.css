@@ -24,7 +24,7 @@
 
 @media only screen and (min-width: 401px) and (max-width: 550px) {
   .WeatherCard {
-    width: 65px;
+    width: 55px;
     height: 12vh;
     margin-bottom: 20px;
   }
