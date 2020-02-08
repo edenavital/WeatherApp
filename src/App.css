@@ -4,16 +4,16 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: inherit;
   text-align: center;
   overflow: hidden;
 }
 
+.App > * {
+  margin: 30px;
+}
+
 .App h1 {
-  position: absolute;
-  top: 6%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   animation: FadeInNoTransform 2s forwards;
   text-shadow: 4px 2px 3px 3px;
 }

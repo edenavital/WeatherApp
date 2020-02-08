@@ -1,6 +1,5 @@
 import React from "react";
 import "./Graph.css";
-import { connect } from "react-redux";
 
 import {
   AreaChart,
@@ -46,8 +45,8 @@ const Graph = ({ graphData }) => {
         <AreaChart
           data={data}
           margin={{
-            top: 10,
-            right: 40,
+            top: 0,
+            right: 50,
             left: 0,
             bottom: 0
           }}
@@ -68,10 +67,4 @@ const Graph = ({ graphData }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    forecastDataFromApi: state.weatherForecast.forecastDataFromApi
-  };
-};
-
-export default connect(mapStateToProps)(Graph);
+export default Graph;
