@@ -50,7 +50,7 @@ export const fetchFromApi = position => {
     let cityName = "";
     axios
       .get(
-        `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${lat}&longitude=${long}&localityLanguage=en&key=${keyOfBigDataCloud}`
+        `http://api.bigdatacloud.net/data/reverse-geocode?latitude=${lat}&longitude=${long}&localityLanguage=en&key=${keyOfBigDataCloud}`
       )
       .then(res => {
         cityName = res.data.locality;
