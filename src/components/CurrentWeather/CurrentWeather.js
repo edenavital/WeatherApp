@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./CurrentWeather.css";
 import { connect } from "react-redux";
-import { fetchUserCoordinates, toggleCelsius } from "../../redux";
+import { toggleCelsius } from "../../redux";
 
 //props: long, lat, fetchUserCoordinates()
 const MONTHS = [
@@ -40,10 +40,6 @@ const generateDateFormat = () => {
 };
 
 class CurrentWeather extends Component {
-  componentDidMount() {
-    this.props.fetchUserCoordinates();
-  }
-
   render() {
     const dateFormat = generateDateFormat();
 
@@ -103,7 +99,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUserCoordinates: () => dispatch(fetchUserCoordinates()),
     toggleCelsius: (isCelsius, temp, tempType) =>
       dispatch(toggleCelsius(isCelsius, temp, tempType))
   };

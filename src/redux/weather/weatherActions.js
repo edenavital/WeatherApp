@@ -14,6 +14,11 @@ export const fetchUserCoordinates = () => {
     dispatch(fetchCoordinates);
 
     if (navigator.geolocation) {
+      let location_timeout = setTimeout(
+        dispatch(fetchCoordinatesFailure()),
+        3000
+      );
+      clearTimeout(location_timeout);
       navigator.geolocation.getCurrentPosition(position => {
         console.log(
           "Coordinates: ",
@@ -24,6 +29,7 @@ export const fetchUserCoordinates = () => {
         dispatch(fetchFromApi(position));
       });
     } else {
+      console.log("LALLALALALALALALALALLALAL");
       dispatch(fetchCoordinatesFailure());
     }
   };
@@ -89,11 +95,8 @@ export const fetchCoordinatesSuccess = (position, dataFromApi) => {
 export const fetchCoordinatesFailure = () => {
   return {
     type: FETCH_COORDINATES_FAILURE,
-    payload: {
-      lat: "",
-      long: "",
-      msg: "Error - can't fetch data"
-    }
+    payload:
+      "There was a problem with accessing your location, make sure location is activated"
   };
 };
 
