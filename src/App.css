@@ -17,3 +17,15 @@
   animation: FadeInNoTransform 2s forwards;
   text-shadow: 4px 2px 3px 3px;
 }
+
+.Loading {
+  width: 100vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Loading h1 {
+  margin-bottom: 20px;
+}

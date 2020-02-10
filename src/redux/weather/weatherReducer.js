@@ -6,6 +6,7 @@ import {
 } from "./weatherTypes";
 
 const initialState = {
+  loading: true,
   long: "",
   lat: "",
   error: ""
@@ -31,13 +32,13 @@ const weatherReducer = (state = initialState, action) => {
         temp: action.payload.dataFromApi.main.temp,
         tempType: "°C",
         cityName: action.payload.dataFromApi.name,
+        loading: false,
         error: ""
       };
     case FETCH_COORDINATES_FAILURE:
       return {
-        long: "",
-        lat: "",
-        error: "Failed to fetch coordinates from user"
+        loading: true,
+        error: action.payload
       };
     case TOGGLE_CELSIUS:
       return {
