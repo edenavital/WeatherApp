@@ -32,7 +32,8 @@ const DAYS = [
 const generateDateFormat = () => {
   let dateFormat = "";
   let date = new Date();
-  dateFormat = `${DAYS[date.getDay()]}, ${date.getDay()} ${
+
+  dateFormat = `${DAYS[date.getDay()]}, ${date.getUTCDate()} ${
     MONTHS[date.getMonth()]
   } ${date.getFullYear()}`;
   return dateFormat;
@@ -45,7 +46,7 @@ class CurrentWeather extends Component {
 
   render() {
     const dateFormat = generateDateFormat();
-    console.log("LOOOOL:", dateFormat);
+
     return (
       <div className="CurrentWeather">
         <div className="weather-summary">
