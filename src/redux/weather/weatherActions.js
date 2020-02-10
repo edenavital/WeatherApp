@@ -45,21 +45,33 @@ export const fetchFromApi = position => {
   return dispatch => {
     const lat = position.coords.latitude;
     const long = position.coords.longitude;
-
+    const keyOfBigDataCloud = "d1c4f3621eae4ab2ad0f00bc9ec7e465";
+    const keyOfWeatherApi = "992de09d4812a13bdc498d2d720b5cc6";
+    let cityName = "";
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=992de09d4812a13bdc498d2d720b5cc6`
+        `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${lat}&longitude=${long}&localityLanguage=en&key=${keyOfBigDataCloud}`
       )
       .then(res => {
-        const dataFromApi = res.data;
-        console.log("dataFromApi - CurrentWeather: ", dataFromApi);
+        cityName = res.data.locality;
+        console.log("CityName:", cityName);
 
-        dispatch(fetchCoordinatesSuccess(position, dataFromApi));
-        //Only after I fetched the data, I can pass the positions of the user to forecastWeather
-        dispatch(fetchForecastWeather());
-      })
-      .catch(err => {
-        dispatch(fetchCoordinatesFailure());
+        //Now that we are exposed to cityName variable, we can use it in order to fetch data for X city
+        axios
+          .get(
+            `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${keyOfWeatherApi}`
+          )
+          .then(res => {
+            const dataFromApi = res.data;
+            console.log("dataFromApi - CurrentWeather: ", dataFromApi);
+
+            dispatch(fetchCoordinatesSuccess(position, dataFromApi));
+            //Only after I fetched the data, I can pass the positions of the user to forecastWeather
+            dispatch(fetchForecastWeather());
+          })
+          .catch(err => {
+            dispatch(fetchCoordinatesFailure());
+          });
       });
   };
 };
@@ -80,7 +92,7 @@ export const fetchCoordinatesFailure = () => {
     payload: {
       lat: "",
       long: "",
-      msg: "Error - can't fetch coordinates"
+      msg: "Error - can't fetch data"
     }
   };
 };
