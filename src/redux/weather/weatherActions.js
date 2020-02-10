@@ -50,7 +50,7 @@ export const fetchFromApi = position => {
     let cityName = "";
     axios
       .get(
-        `http://api.bigdatacloud.net/data/reverse-geocode?latitude=${lat}&longitude=${long}&localityLanguage=en&key=${keyOfBigDataCloud}`
+        `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${lat}&longitude=${long}&localityLanguage=en&key=${keyOfBigDataCloud}`
       )
       .then(res => {
         cityName = res.data.locality;
@@ -59,7 +59,7 @@ export const fetchFromApi = position => {
         //Now that we are exposed to cityName variable, we can use it in order to fetch data for X city
         axios
           .get(
-            `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${keyOfWeatherApi}`
+            `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${keyOfWeatherApi}`
           )
           .then(res => {
             const dataFromApi = res.data;

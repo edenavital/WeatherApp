@@ -39,7 +39,7 @@ export const fetchForecastWeather = () => {
 
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=992de09d4812a13bdc498d2d720b5cc6`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=992de09d4812a13bdc498d2d720b5cc6`
       )
       .then(res => {
         const forecastDataFromApi = res.data;

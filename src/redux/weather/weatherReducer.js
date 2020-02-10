@@ -26,7 +26,7 @@ const weatherReducer = (state = initialState, action) => {
         name: action.payload.dataFromApi.name,
         country: action.payload.dataFromApi.sys.country,
         description: action.payload.dataFromApi.weather[0].description,
-        icon: `http://openweathermap.org/img/wn/${action.payload.dataFromApi.weather[0].icon}@2x.png`,
+        icon: `https://openweathermap.org/img/wn/${action.payload.dataFromApi.weather[0].icon}@2x.png`,
         isCelsius: true,
         temp: action.payload.dataFromApi.main.temp,
         tempType: "°C",
