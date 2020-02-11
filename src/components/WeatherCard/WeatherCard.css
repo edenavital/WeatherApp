@@ -1,6 +1,6 @@
 .WeatherCard {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -15,9 +15,10 @@
   margin: 0px;
 }
 
-@media only screen and (min-width: 550px) and (max-width: 650px) {
+@media only screen and (min-width: 550px) and (max-width: 750px) {
   .WeatherCard {
     width: 90px;
+    justify-content: start;
     height: 18vh;
   }
 }
