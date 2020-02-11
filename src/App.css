@@ -6,7 +6,6 @@
   width: 100vw;
   height: inherit;
   text-align: center;
-  overflow: hidden;
 }
 
 .App > * {
