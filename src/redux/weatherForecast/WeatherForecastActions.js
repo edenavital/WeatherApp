@@ -33,13 +33,12 @@ export const fetchForecastWeather = () => {
     dispatch(fetchForecastRequest());
 
     const storeFromWeather = getState().weather;
-
     const cityName = storeFromWeather.name;
-    // console.log("cityName is:", cityName);
+    const WEATHER_API = process.env.REACT_APP_OPEN_WEATHER_API;
 
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=992de09d4812a13bdc498d2d720b5cc6`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${WEATHER_API}`
       )
       .then((res) => {
         const forecastDataFromApi = res.data;

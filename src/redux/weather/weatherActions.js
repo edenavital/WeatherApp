@@ -21,11 +21,8 @@ export const fetchUserCoordinates = () => {
 
     try {
       const position = await getPosition();
-      console.log("position", position);
       dispatch(fetchFromApi(position));
-      console.log("da");
     } catch (err) {
-      console.log("laaaaa");
       dispatch(fetchCoordinatesFailure());
     }
   };
@@ -47,8 +44,8 @@ export const fetchFromApi = (position) => {
   return (dispatch) => {
     const lat = position.coords.latitude;
     const long = position.coords.longitude;
-    const keyOfBigDataCloud = "d1c4f3621eae4ab2ad0f00bc9ec7e465";
-    const keyOfWeatherApi = "992de09d4812a13bdc498d2d720b5cc6";
+    const keyOfBigDataCloud = process.env.REACT_APP_BIG_DATA_API;
+    const keyOfWeatherApi = process.env.REACT_APP_OPEN_WEATHER_API;
     let cityName = "";
     axios
       .get(
