@@ -4,32 +4,28 @@ import {
   FETCH_COORDINATES,
   FETCH_COORDINATES_SUCCESS,
   FETCH_COORDINATES_FAILURE,
-  TOGGLE_CELSIUS
+  TOGGLE_CELSIUS,
 } from "./weatherTypes";
+
+function getPosition() {
+  return new Promise((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition(resolve, reject)
+  );
+}
 
 //Action creator that goes to the component CurrentWeather - Fetching coordinates from the user, than gets data from the api
 export const fetchUserCoordinates = () => {
-  console.log("fetchUserCoordinates invoked");
-  return dispatch => {
+  // console.log("fetchUserCoordinates invoked");
+  return async (dispatch) => {
     dispatch(fetchCoordinates);
 
-    if (navigator.geolocation) {
-      let location_timeout = setTimeout(
-        dispatch(fetchCoordinatesFailure()),
-        3000
-      );
-      clearTimeout(location_timeout);
-      navigator.geolocation.getCurrentPosition(position => {
-        console.log(
-          "Coordinates: ",
-          position.coords.latitude,
-          position.coords.longitude
-        );
-        //Calling fetchFromApi with position coordinates
-        dispatch(fetchFromApi(position));
-      });
-    } else {
-      console.log("LALLALALALALALALALALLALAL");
+    try {
+      const position = await getPosition();
+      console.log("position", position);
+      dispatch(fetchFromApi(position));
+      console.log("da");
+    } catch (err) {
+      console.log("laaaaa");
       dispatch(fetchCoordinatesFailure());
     }
   };
@@ -37,7 +33,7 @@ export const fetchUserCoordinates = () => {
 
 export const fetchCoordinates = () => {
   return {
-    type: FETCH_COORDINATES
+    type: FETCH_COORDINATES,
   };
 };
 
@@ -46,9 +42,9 @@ export const fetchCoordinates = () => {
 //and action.payload.dataFromApi - which is the data (json format) I get from the api
 //In the Reducer, I can send the json or destructure only what I need
 
-export const fetchFromApi = position => {
-  console.log("fetchFromApi invoked");
-  return dispatch => {
+export const fetchFromApi = (position) => {
+  // console.log("fetchFromApi invoked");
+  return (dispatch) => {
     const lat = position.coords.latitude;
     const long = position.coords.longitude;
     const keyOfBigDataCloud = "d1c4f3621eae4ab2ad0f00bc9ec7e465";
@@ -58,24 +54,24 @@ export const fetchFromApi = position => {
       .get(
         `https://api.bigdatacloud.net/data/reverse-geocode?latitude=${lat}&longitude=${long}&localityLanguage=en&key=${keyOfBigDataCloud}`
       )
-      .then(res => {
+      .then((res) => {
         cityName = res.data.locality;
-        console.log("CityName:", cityName);
+        // console.log("CityName:", cityName);
 
         //Now that we are exposed to cityName variable, we can use it in order to fetch data for X city
         axios
           .get(
             `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${keyOfWeatherApi}`
           )
-          .then(res => {
+          .then((res) => {
             const dataFromApi = res.data;
-            console.log("dataFromApi - CurrentWeather: ", dataFromApi);
+            // console.log("dataFromApi - CurrentWeather: ", dataFromApi);
 
             dispatch(fetchCoordinatesSuccess(position, dataFromApi));
             //Only after I fetched the data, I can pass the positions of the user to forecastWeather
             dispatch(fetchForecastWeather());
           })
-          .catch(err => {
+          .catch((err) => {
             dispatch(fetchCoordinatesFailure());
           });
       });
@@ -87,8 +83,8 @@ export const fetchCoordinatesSuccess = (position, dataFromApi) => {
     type: FETCH_COORDINATES_SUCCESS,
     payload: {
       position: position,
-      dataFromApi: dataFromApi
-    }
+      dataFromApi: dataFromApi,
+    },
   };
 };
 
@@ -96,7 +92,7 @@ export const fetchCoordinatesFailure = () => {
   return {
     type: FETCH_COORDINATES_FAILURE,
     payload:
-      "There was a problem with accessing your location, make sure location is activated"
+      "There was a problem with accessing your location, make sure location is activated",
   };
 };
 
@@ -117,7 +113,7 @@ export const toggleCelsius = (isCelsius, temp, tempType) => {
     payload: {
       temp: newTemp,
       isCelsius: !isCelsius,
-      tempType: newTempType
-    }
+      tempType: newTempType,
+    },
   };
 };

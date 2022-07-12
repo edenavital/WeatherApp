@@ -8,35 +8,35 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 
 //Should fill this data with the temperatures
 //props will be a fixed json with all the data I need in order to display this component
 const Graph = ({ graphData }) => {
-  console.log(graphData);
+  // console.log(graphData);
 
   const data = [
     {
       name: graphData[0].name,
-      temperature: graphData[0].temperature
+      temperature: graphData[0].temperature,
     },
     {
       name: graphData[1].name,
-      temperature: graphData[1].temperature
+      temperature: graphData[1].temperature,
     },
     {
       name: graphData[2].name,
-      temperature: graphData[2].temperature
+      temperature: graphData[2].temperature,
     },
     {
       name: graphData[3].name,
-      temperature: graphData[3].temperature
+      temperature: graphData[3].temperature,
     },
     {
       name: graphData[4].name,
-      temperature: graphData[4].temperature
-    }
+      temperature: graphData[4].temperature,
+    },
   ];
 
   return (
@@ -48,7 +48,7 @@ const Graph = ({ graphData }) => {
             top: 0,
             right: 50,
             left: 0,
-            bottom: 0
+            bottom: 0,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
