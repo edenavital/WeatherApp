@@ -2,14 +2,14 @@ import {
   FETCH_COORDINATES,
   FETCH_COORDINATES_SUCCESS,
   FETCH_COORDINATES_FAILURE,
-  TOGGLE_CELSIUS
+  TOGGLE_CELSIUS,
 } from "./weatherTypes";
 
 const initialState = {
   loading: true,
   long: "",
   lat: "",
-  error: ""
+  error: "",
 };
 
 const weatherReducer = (state = initialState, action) => {
@@ -18,7 +18,7 @@ const weatherReducer = (state = initialState, action) => {
       return {
         long: "",
         lat: "",
-        error: ""
+        error: "",
       };
     case FETCH_COORDINATES_SUCCESS:
       return {
@@ -33,19 +33,19 @@ const weatherReducer = (state = initialState, action) => {
         tempType: "°C",
         cityName: action.payload.dataFromApi.name,
         loading: false,
-        error: ""
+        error: "",
       };
     case FETCH_COORDINATES_FAILURE:
       return {
-        loading: true,
-        error: action.payload
+        loading: false,
+        error: action.payload,
       };
     case TOGGLE_CELSIUS:
       return {
         ...state,
         temp: action.payload.temp,
         isCelsius: action.payload.isCelsius,
-        tempType: action.payload.tempType
+        tempType: action.payload.tempType,
       };
     default:
       return state;

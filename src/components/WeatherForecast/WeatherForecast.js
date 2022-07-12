@@ -6,7 +6,7 @@ import Graph from "../Graph/Graph";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-const getCurrentDay = dt_txt => {
+const getCurrentDay = (dt_txt) => {
   const date = new Date(dt_txt);
   return DAYS[date.getDay()];
 };
@@ -15,22 +15,21 @@ let graphData = [];
 
 class WeatherForecast extends Component {
   render() {
-    console.log(
-      "Hello from WeatherForecast component, my state: state.WeatherForecast: ",
-      this.props.forecastDataFromApi
-    );
+    // console.log(
+    //   "Hello from WeatherForecast component, my state: state.WeatherForecast: ",
+    //   this.props.forecastDataFromApi
+    // );
 
     //I want to display the weather according to the current time.
     //So I take only the objects that represents the current time.
     //Extracting the current time according to the API (09:00:00)
-    const currentFitTime = this.props.forecastDataFromApi.list[0].dt_txt.slice(
-      -8
-    );
-    console.log("CURRENT FIT TIME IS: ", currentFitTime);
+    const currentFitTime =
+      this.props.forecastDataFromApi.list[0].dt_txt.slice(-8);
+    // console.log("CURRENT FIT TIME IS: ", currentFitTime);
 
     //Looping on the weather objects, and filtering - returning only objects that have the current time
     const fifthDaysData = this.props.forecastDataFromApi.list.filter(
-      forecast => {
+      (forecast) => {
         const timeOfObject = forecast.dt_txt.slice(-8);
         if (currentFitTime === timeOfObject) {
           return true;
@@ -40,17 +39,17 @@ class WeatherForecast extends Component {
       }
     );
 
-    console.log("I'M LEFT WITH: ", fifthDaysData);
+    // console.log("I'M LEFT WITH: ", fifthDaysData);
 
     let animationDelay = 3.5;
 
-    let forecast = fifthDaysData.map(weatherPerDay => {
+    let forecast = fifthDaysData.map((weatherPerDay) => {
       const currentDayString = getCurrentDay(weatherPerDay.dt_txt);
       animationDelay += 0.8;
 
       const dataToGraphPerDay = {
         name: currentDayString,
-        temperature: weatherPerDay.main.temp
+        temperature: weatherPerDay.main.temp,
       };
       graphData.push(dataToGraphPerDay);
 
@@ -77,13 +76,13 @@ class WeatherForecast extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    forecastDataFromApi: state.weatherForecast.forecastDataFromApi
+    forecastDataFromApi: state.weatherForecast.forecastDataFromApi,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     //Not dispatching it from here, since I need the coordinates from the user !
     //fetchForecastWeather: () => dispatch(fetchForecastWeather())

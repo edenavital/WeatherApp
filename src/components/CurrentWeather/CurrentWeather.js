@@ -3,7 +3,6 @@ import "./CurrentWeather.css";
 import { connect } from "react-redux";
 import { toggleCelsius } from "../../redux";
 
-//props: long, lat, fetchUserCoordinates()
 const MONTHS = [
   "January",
   "February",
@@ -16,7 +15,7 @@ const MONTHS = [
   "September",
   "October",
   "November",
-  "December"
+  "December",
 ];
 
 const DAYS = [
@@ -26,7 +25,7 @@ const DAYS = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday"
+  "Saturday",
 ];
 
 const generateDateFormat = () => {
@@ -80,7 +79,7 @@ class CurrentWeather extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     //Coordinates of user
     long: state.weather.long,
@@ -93,14 +92,14 @@ const mapStateToProps = state => {
     icon: state.weather.icon,
     isCelsius: state.weather.isCelsius,
     temp: state.weather.temp,
-    tempType: state.weather.tempType
+    tempType: state.weather.tempType,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     toggleCelsius: (isCelsius, temp, tempType) =>
-      dispatch(toggleCelsius(isCelsius, temp, tempType))
+      dispatch(toggleCelsius(isCelsius, temp, tempType)),
   };
 };
 

@@ -6,47 +6,62 @@ import { connect } from "react-redux";
 import Loader from "./components/Loader/Loader";
 import { fetchUserCoordinates } from "./redux";
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchUserCoordinates();
+  async componentDidMount() {
+    await this.props.fetchUserCoordinates();
   }
 
-  render() {
-    let forecast = "";
-    forecast = !this.props.loading
-      ? (forecast = <WeatherForecast />)
-      : (forecast = null);
-
-    let app = "";
-    app = (
+  renderLoadingState = () => {
+    return (
       <div className="Loading">
         <h1>Trying to access your location ...</h1>
         <Loader />
       </div>
     );
+  };
 
-    if (!this.props.loadingApp) {
-      app = (
-        <>
-          <h1>Weather App</h1>
-          <CurrentWeather />
-          {forecast}
-        </>
-      );
-    }
+  renderErrorState = () => {
+    const { error } = this.props;
+    return (
+      <div className="Loading">
+        <h1>{error}</h1>
+      </div>
+    );
+  };
 
-    return <div className="App">{app}</div>;
+  renderContent = () => {
+    return (
+      <>
+        <h1>Weather App</h1>
+        <CurrentWeather />
+        <WeatherForecast />
+      </>
+    );
+  };
+
+  render() {
+    const { error, loading } = this.props;
+    return (
+      <div className="App">
+        {error && error.length > 0
+          ? this.renderErrorState()
+          : loading
+          ? this.renderLoadingState()
+          : this.renderContent()}
+      </div>
+    );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     loading: state.weatherForecast.loading,
-    loadingApp: state.weather.loading
+    loadingApp: state.weather.loading,
+    error: state.weather.error,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUserCoordinates: () => dispatch(fetchUserCoordinates())
+    fetchUserCoordinates: () => dispatch(fetchUserCoordinates()),
   };
 };
 
